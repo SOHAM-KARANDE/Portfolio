@@ -1,0 +1,390 @@
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI/ML Engineer Portfolio - Material You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@material/web@1.4.1/dist/material-web.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --md-sys-color-primary: #6750A4;
+        --md-sys-color-on-primary: #FFFFFF;
+        --md-sys-color-primary-container: #EADDFF;
+        --md-sys-color-on-primary-container: #21005D;
+        --md-sys-color-secondary: #625B71;
+        --md-sys-color-on-secondary: #FFFFFF;
+        --md-sys-color-secondary-container: #E8DEF8;
+        --md-sys-color-on-secondary-container: #1D192B;
+        --md-sys-color-tertiary: #7D5260;
+        --md-sys-color-on-tertiary: #FFFFFF;
+        --md-sys-color-tertiary-container: #FFD8E4;
+        --md-sys-color-on-tertiary-container: #31111D;
+        --md-sys-color-error: #B3261E;
+        --md-sys-color-on-error: #FFFFFF;
+        --md-sys-color-error-container: #F9DEDC;
+        --md-sys-color-on-error-container: #410E0B;
+        --md-sys-color-background: #FFFBFE;
+        --md-sys-color-on-background: #1C1B1F;
+        --md-sys-color-surface: #FFFBFE;
+        --md-sys-color-on-surface: #1C1B1F;
+        --md-sys-color-surface-variant: #E7E0EC;
+        --md-sys-color-on-surface-variant: #49454F;
+        --md-sys-color-outline: #79747E;
+        --md-sys-color-outline-variant: #C4C7C5;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-inverse-surface: #313033;
+        --md-sys-color-inverse-on-surface: #F4EFF4;
+        --md-sys-color-inverse-primary: #D0BCFF;
+        --md-sys-color-surface-dim: #DED8E1;
+        --md-sys-color-surface-bright: #FFFBFE;
+        --md-sys-color-surface-container-lowest: #FFFFFF;
+        --md-sys-color-surface-container-low: #F7F2FA;
+        --md-sys-color-surface-container: #F3EDF7;
+        --md-sys-color-surface-container-high: #EEE8F4;
+        --md-sys-color-surface-container-highest: #E6E0E9;
+      }
+      .dark {
+        --md-sys-color-primary: #D0BCFF;
+        --md-sys-color-on-primary: #381E72;
+        --md-sys-color-primary-container: #4F378B;
+        --md-sys-color-on-primary-container: #EADDFF;
+        --md-sys-color-secondary: #CCC2DC;
+        --md-sys-color-on-secondary: #332D41;
+        --md-sys-color-secondary-container: #4A4458;
+        --md-sys-color-on-secondary-container: #E8DEF8;
+        --md-sys-color-tertiary: #EFB8C8;
+        --md-sys-color-on-tertiary: #492532;
+        --md-sys-color-tertiary-container: #633B48;
+        --md-sys-color-on-tertiary-container: #FFD8E4;
+        --md-sys-color-error: #F2B8B5;
+        --md-sys-color-on-error: #601410;
+        --md-sys-color-error-container: #8C1D18;
+        --md-sys-color-on-error-container: #F9DEDC;
+        --md-sys-color-background: #1C1B1F;
+        --md-sys-color-on-background: #E6E1E5;
+        --md-sys-color-surface: #1C1B1F;
+        --md-sys-color-on-surface: #E6E1E5;
+        --md-sys-color-surface-variant: #49454F;
+        --md-sys-color-on-surface-variant: #CAC4D0;
+        --md-sys-color-outline: #938F99;
+        --md-sys-color-outline-variant: #444746;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-inverse-surface: #E6E1E5;
+        --md-sys-color-inverse-on-surface: #313033;
+        --md-sys-color-inverse-primary: #6750A4;
+        --md-sys-color-surface-dim: #141218;
+        --md-sys-color-surface-bright: #3B383E;
+        --md-sys-color-surface-container-lowest: #0F0D13;
+        --md-sys-color-surface-container-low: #1C1B1F;
+        --md-sys-color-surface-container: #211F26;
+        --md-sys-color-surface-container-high: #2B2931;
+        --md-sys-color-surface-container-highest: #36343B;
+      }
+      
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in { animation: fade-in 0.5s ease-in-out forwards; }
+
+      @keyframes pulse-slow {
+          0% { transform: scale(1); opacity: 0.8; }
+          50% { transform: scale(1.02); opacity: 1; }
+          100% { transform: scale(1); opacity: 0.8; }
+      }
+      .animate-pulse-slow {
+          animation: pulse-slow 8s ease-in-out infinite;
+      }
+
+      /* Intro Animation Styles */
+      #intro-animation-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #EDE7F6; /* A soft, elegant lavender as requested */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 1s ease-out, visibility 1s ease-out;
+      }
+
+      #intro-animation-container.fading-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #soham-name-animation {
+        font-family: 'Inter', sans-serif;
+        font-weight: 900;
+        font-size: 10vw;
+        color: #6750A4; /* Using theme's primary color for a modern aesthetic */
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      #soham-name-animation .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+      #soham-name-animation .letter.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      
+      #tagline-soham {
+        font-family: 'Roboto Flex', sans-serif;
+        font-weight: 400;
+        font-size: 1.8em;
+        color: #625B71; /* Using theme's secondary color for readability */
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.8s ease-in;
+        max-width: 80%;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+      #tagline-soham.visible {
+        opacity: 1;
+      }
+
+      #roles-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2.5rem;
+        opacity: 0;
+        transition: opacity 0.8s ease-in;
+        padding: 0 1rem; /* Add some padding to prevent boxes from touching edges on very small screens */
+      }
+
+      #roles-container.visible {
+          opacity: 1;
+      }
+
+      .role-box {
+          background-color: var(--md-sys-color-primary-container);
+          color: var(--md-sys-color-on-primary-container);
+          padding: 0.75rem 1.5rem;
+          border-radius: 999px; /* pill shape */
+          font-family: 'Roboto Flex', sans-serif;
+          font-weight: 500;
+          font-size: 1em;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+          box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+      }
+
+      #roles-container.visible .role-box {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      /* Staggered animation */
+      #roles-container.visible .role-box:nth-child(1) { transition-delay: 0.2s; }
+      #roles-container.visible .role-box:nth-child(2) { transition-delay: 0.3s; }
+      #roles-container.visible .role-box:nth-child(3) { transition-delay: 0.4s; }
+
+
+      @media (max-width: 768px) {
+        #soham-name-animation {
+          font-size: 18vw;
+        }
+        #tagline-soham {
+          font-size: 1.2em;
+        }
+        #roles-container {
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+        .role-box {
+            font-size: 0.9em;
+            padding: 0.6rem 1.2rem;
+        }
+      }
+      
+      md-dialog {
+        max-width: calc(100vw - 48px);
+        max-height: calc(100vh - 48px);
+      }
+
+      /* Chatbot Icon Styles */
+      .chatbot-icon-container {
+        width: 32px;
+        height: 32px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      .siri-wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgb(var(--color-primary));
+        opacity: 0.6;
+        animation: siri-pulse 3s ease-in-out infinite;
+      }
+
+      .siri-wave-2 { animation-delay: 0.5s; border-color: rgb(var(--color-tertiary)); }
+      .siri-wave-3 { animation-delay: 1s; }
+      .siri-wave-4 { animation-delay: 1.5s; border-color: rgb(var(--color-secondary)); }
+
+      @keyframes siri-pulse {
+        0% { transform: scale(0.5); opacity: 0; }
+        50% { opacity: 0.8; }
+        100% { transform: scale(1.5); opacity: 0; }
+      }
+
+      /* Chatbot Window Styles */
+      .chatbot-window-container {
+        animation: fade-in 0.3s ease-out forwards;
+      }
+      @media (max-width: 640px) {
+          .chatbot-window-container {
+              padding: 0;
+              align-items: stretch;
+              justify-content: stretch;
+          }
+          .chatbot-window-container > div.relative {
+              max-width: 100%;
+              height: 100vh;
+              max-height: 100vh;
+          }
+          .chatbot-window-container .rounded-2xl {
+              border-radius: 0;
+          }
+      }
+
+      .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        float: left;
+        margin: 0 2px;
+        background-color: rgb(var(--color-on-surface-variant));
+        display: block;
+        border-radius: 50%;
+        opacity: 0.4;
+        animation: typing-fade 1s infinite;
+      }
+      .typing-indicator span:nth-of-type(2) { animation-delay: 0.2s; }
+      .typing-indicator span:nth-of-type(3) { animation-delay: 0.4s; }
+
+      @keyframes typing-fade {
+        0% { opacity: 0.4; }
+        50% { opacity: 1; }
+        100% { opacity: 0.4; }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['"Roboto Flex"', 'sans-serif'],
+            },
+            colors: {
+              primary: 'rgb(var(--color-primary))',
+              'on-primary': 'rgb(var(--color-on-primary))',
+              'primary-container': 'rgb(var(--color-primary-container))',
+              'on-primary-container': 'rgb(var(--color-on-primary-container))',
+              secondary: 'rgb(var(--color-secondary))',
+              'on-secondary': 'rgb(var(--color-on-secondary))',
+              'secondary-container': 'rgb(var(--color-secondary-container))',
+              'on-secondary-container': 'rgb(var(--color-on-secondary-container))',
+              tertiary: 'rgb(var(--color-tertiary))',
+              'on-tertiary': 'rgb(var(--color-on-tertiary))',
+              'tertiary-container': 'rgb(var(--color-tertiary-container))',
+              'on-tertiary-container': 'rgb(var(--color-on-tertiary-container))',
+              error: 'rgb(var(--color-error))',
+              'on-error': 'rgb(var(--color-on-error))',
+              'error-container': 'rgb(var(--color-error-container))',
+              'on-error-container': 'rgb(var(--color-on-error-container))',
+              background: 'rgb(var(--color-background))',
+              'on-background': 'rgb(var(--color-on-background))',
+              surface: 'rgb(var(--color-surface))',
+              'on-surface': 'rgb(var(--color-on-surface))',
+              'surface-variant': 'rgb(var(--color-surface-variant))',
+              'on-surface-variant': 'rgb(var(--color-on-surface-variant))',
+              outline: 'rgb(var(--color-outline))',
+              'outline-variant': 'rgb(var(--color-outline-variant))',
+              shadow: 'rgb(var(--color-shadow))',
+              scrim: 'rgb(var(--color-scrim))',
+              'inverse-surface': 'rgb(var(--color-inverse-surface))',
+              'inverse-on-surface': 'rgb(var(--color-inverse-on-surface))',
+              'inverse-primary': 'rgb(var(--color-inverse-primary))',
+              'surface-dim': 'rgb(var(--color-surface-dim))',
+              'surface-bright': 'rgb(var(--color-surface-bright))',
+              'surface-container-lowest': 'rgb(var(--color-surface-container-lowest))',
+              'surface-container-low': 'rgb(var(--color-surface-container-low))',
+              'surface-container': 'rgb(var(--color-surface-container))',
+              'surface-container-high': 'rgb(var(--color-surface-container-high))',
+              'surface-container-highest': 'rgb(var(--color-surface-container-highest))',
+            },
+            keyframes: {
+                'fade-in': {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                'fade-in-down': {
+                    '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                'ripple-effect': {
+                  'to': {
+                    transform: 'scale(4)',
+                    opacity: '0'
+                  }
+                }
+            },
+            animation: {
+                'fade-in': 'fade-in 0.3s ease-out forwards',
+                'fade-in-down': 'fade-in-down 0.2s ease-out forwards',
+                'ripple-effect': 'ripple-effect 0.6s linear',
+            }
+          }
+        }
+      }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-surface text-on-surface font-sans antialiased">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
