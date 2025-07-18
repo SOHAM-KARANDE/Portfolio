@@ -1,6 +1,6 @@
 {
-  "name": "final portfolio ",
-  "description": "A personal portfolio for an AI/ML Engineer, showcasing projects, experience, and skills with a 'Playful Professionalism' design philosophy.",
+  "name": "BLUE AI",
+  "description": "A sophisticated, multimodal AI conversational agent with a macOS-inspired UI. It features dynamic multimodal responses (text, image), advanced content generation, and user-editable outputs.",
   "requestFramePermissions": [],
   "prompt": ""
 }
